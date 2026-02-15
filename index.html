@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu4loan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>🎓 Edu4Loan</h1>
+                <p>Compare Education Loans Across Indian Banks</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#form">Find Loans</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Find the Best Education Loan for Your Future</h2>
+            <p>Compare loans from multiple banks in one place. Student-first. Transparent. Free.</p>
+            <a href="#form" class="cta-button">Start Comparing Now</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose Our Platform?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">🎯</div>
+                    <h3>Student-First</h3>
+                    <p>Designed specifically for students and parents seeking education loans</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💰</div>
+                    <h3>Compare Instantly</h3>
+                    <p>Compare interest rates and eligibility from multiple banks at once</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔒</div>
+                    <h3>100% Free</h3>
+                    <p>No hidden charges, no agent fees, completely transparent</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">✅</div>
+                    <h3>Verified Data</h3>
+                    <p>All bank information verified from official sources</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loan Comparison Form -->
+    <section class="form-section" id="form">
+        <div class="container">
+            <h2>Find Your Ideal Education Loan</h2>
+            <p class="subtitle">Fill in your details to compare suitable bank options</p>
+            
+            <form id="loanForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required placeholder="10-digit mobile number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loanAmount">Loan Amount Required (₹) *</label>
+                        <input type="number" id="loanAmount" required placeholder="e.g., 500000" min="50000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course">Course/Degree *</label>
+                        <select id="course" required>
+                            <option value="">Select your course</option>
+                            <option value="undergraduate">Undergraduate (UG)</option>
+                            <option value="postgraduate">Postgraduate (PG)</option>
+                            <option value="phd">PhD/Doctorate</option>
+                            <option value="diploma">Diploma/Certificate</option>
+                            <option value="professional">Professional Courses</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination">Study Destination *</label>
+                        <select id="destination" required>
+                            <option value="">Select destination</option>
+                            <option value="india">Within India</option>
+                            <option value="abroad">Abroad</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="collateral">Collateral Available? *</label>
+                        <select id="collateral" required>
+                            <option value="">Select option</option>
+                            <option value="yes">Yes (Property/FD/Securities)</option>
+                            <option value="no">No Collateral</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coapplicant">Co-Applicant Income (₹/year) *</label>
+                        <input type="number" id="coapplicant" required placeholder="Annual income of parent/guardian">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="academicScore">Academic Score/Percentage *</label>
+                        <input type="number" id="academicScore" required placeholder="e.g., 85" min="0" max="100" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Compare Loan Options</button>
+                    <button type="reset" class="reset-btn">Clear Form</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results" style="display: none;">
+        <div class="container">
+            <h2>🎯 Recommended Banks For You</h2>
+            <div id="resultsContainer"></div>
+            <div class="disclaimer">
+                <p><strong>Important:</strong> These are recommendations based on general eligibility criteria. Final loan approval is subject to bank verification and assessment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2>About This Platform</h2>
+            <div class="about-content">
+                <p>This platform was created as part of <strong>INNOVIT 2026</strong> by Team <strong>CodeBunnies</strong> to address a critical problem faced by Indian students: the lack of a centralized, transparent platform to compare education loan options.</p>
+                
+                <div class="problem-solution">
+                    <div class="box">
+                        <h3>The Problem</h3>
+                        <ul>
+                            <li>Students visit multiple banks individually</li>
+                            <li>Loan information is scattered and confusing</li>
+                            <li>Heavy dependency on agents and middlemen</li>
+                            <li>Lack of transparency in eligibility criteria</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>Our Solution</h3>
+                        <ul>
+                            <li>One form to compare multiple banks</li>
+                            <li>Clear, student-friendly comparison</li>
+                            <li>No agents, completely free service</li>
+                            <li>Transparent eligibility mapping</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="atmanirbhar">
+                    <h3>🇮🇳 Contributing to Atmanirbhar Bharat</h3>
+                    <p>By empowering students with financial clarity and reducing dependency on intermediaries, we promote self-reliant decision-making and support India's vision of an educated, self-sufficient workforce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CodeBunnies - INNOVIT 2026 | Theme: Open Innovation (TH01)</p>
+            <p class="motto">Ideas Powering Atmanirbhar Bharat 🇮🇳</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
