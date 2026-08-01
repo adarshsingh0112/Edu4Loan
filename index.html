@@ -1,196 +1,652 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edu4loan</title>
+    <title>Edu4Loan - India's #1 Education Loan Marketplace | Compare & Apply Online</title>
+    <meta name="description" content="Compare education loans across top Indian banks (SBI, HDFC Credila, ICICI, PNB, BOB). Instant in-principle sanction, moratorium EMI calculator, and Sec 80E tax savings.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1>🎓 Edu4Loan</h1>
-                <p>Compare Education Loans Across Indian Banks</p>
+
+    <!-- Top Announcement Bar (Amazon Style) -->
+    <div class="top-announcement-bar">
+        <div class="container top-announcement-container">
+            <div class="announcement-left">
+                <span class="pulse-dot"></span>
+                <span>🔥 <strong>2026 Special:</strong> SBI & HDFC Credila Interest Rates Reduced by 0.25% p.a.</span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#form">Find Loans</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-            </nav>
+            <div class="announcement-right">
+                <a href="tel:18001234567" class="announcement-link">📞 Free Student Helpline: 1800-123-4567</a>
+                <span class="divider">|</span>
+                <a href="#subsidies" class="announcement-link">🇮🇳 CSIS Govt Subsidy Guide</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header (Amazon / Myntra Style) -->
+    <header class="main-header">
+        <div class="container header-container">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-logo">
+                <span class="logo-icon">🎓</span>
+                <div class="logo-text-group">
+                    <span class="logo-main">Edu<span class="logo-highlight">4Loan</span></span>
+                    <span class="logo-tagline">INNOVIT 2026 • FINTECH MARKETPLACE</span>
+                </div>
+            </a>
+
+            <!-- Destination Selector (Amazon Style) -->
+            <div class="location-selector" id="locationSelector">
+                <span class="location-icon">📍</span>
+                <div class="location-text">
+                    <span class="location-label">Study Destination</span>
+                    <span class="location-value" id="currentLocation">USA & Global</span>
+                </div>
+            </div>
+
+            <!-- Universal Search Bar (Amazon Style) -->
+            <div class="search-bar-wrapper">
+                <select class="search-category-select" id="searchCategory">
+                    <option value="all">All Loans</option>
+                    <option value="abroad">Study Abroad</option>
+                    <option value="india">Study in India</option>
+                    <option value="nocollateral">Zero Collateral</option>
+                    <option value="govt">Public Banks</option>
+                </select>
+                <input type="text" class="search-input" id="universalSearch" placeholder="Search banks (e.g. SBI, HDFC Credila, ICICI), courses, or countries...">
+                <button class="search-btn" id="searchBtn" title="Search">
+                    <span>🔍</span>
+                </button>
+            </div>
+
+            <!-- Right Action Icons (Myntra Style) -->
+            <div class="header-actions">
+                <!-- Theme Toggle -->
+                <button class="icon-action-btn" id="themeToggle" title="Toggle Light/Dark Theme">
+                    <span class="theme-icon sun-icon">☀️</span>
+                    <span class="theme-icon moon-icon">🌙</span>
+                </button>
+
+                <!-- Shortlist / Wishlist -->
+                <div class="icon-action-btn" id="wishlistBtn">
+                    <span class="icon-symbol">❤️</span>
+                    <span class="icon-label">Shortlist</span>
+                    <span class="badge-count" id="wishlistCount">0</span>
+                </div>
+
+                <!-- Compare Cart -->
+                <div class="icon-action-btn" id="compareCartBtn">
+                    <span class="icon-symbol">⚖️</span>
+                    <span class="icon-label">Compare</span>
+                    <span class="badge-count" id="compareCount">0</span>
+                </div>
+
+                <!-- Account / Sign In -->
+                <button class="account-btn" id="loginBtn">
+                    <span class="account-icon">👤</span>
+                    <div class="account-text">
+                        <span class="account-sub">Hello, Sign In</span>
+                        <span class="account-main">Student Portal ▼</span>
+                    </div>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h2>Find the Best Education Loan for Your Future</h2>
-            <p>Compare loans from multiple banks in one place. Student-first. Transparent. Free.</p>
-            <a href="#form" class="cta-button">Start Comparing Now</a>
+    <!-- Sub-Category Navigation Strip (Myntra Style) -->
+    <nav class="category-strip">
+        <div class="container category-strip-container">
+            <a href="#form" class="cat-tab active" data-cat="all">
+                <span class="cat-icon">🔥</span> All Loan Products
+            </a>
+            <a href="#form" class="cat-tab" data-cat="abroad">
+                <span class="cat-icon">✈️</span> Study Abroad Loans
+            </a>
+            <a href="#form" class="cat-tab" data-cat="nocollateral">
+                <span class="cat-icon">🆓</span> Zero Collateral Loans
+            </a>
+            <a href="#form" class="cat-tab" data-cat="govt">
+                <span class="cat-icon">🏛️</span> Public Sector Banks (SBI/BOB)
+            </a>
+            <a href="#form" class="cat-tab" data-cat="nbfc">
+                <span class="cat-icon">⚡</span> Instant NBFC Approval
+            </a>
+            <a href="#calculator" class="cat-tab">
+                <span class="cat-icon">🧮</span> Moratorium EMI Calc
+            </a>
+            <a href="#tax-calculator" class="cat-tab">
+                <span class="cat-icon">💡</span> Sec 80E Tax Savings
+            </a>
+            <a href="#documents" class="cat-tab">
+                <span class="cat-icon">📄</span> Document Checklist
+            </a>
         </div>
-    </section>
+    </nav>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Promotional Hero Banners (Amazon Hero Banner Style) -->
+    <section class="hero-banner-section">
         <div class="container">
-            <h2>Why Choose Our Platform?</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon">🎯</div>
-                    <h3>Student-First</h3>
-                    <p>Designed specifically for students and parents seeking education loans</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">💰</div>
-                    <h3>Compare Instantly</h3>
-                    <p>Compare interest rates and eligibility from multiple banks at once</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🔒</div>
-                    <h3>100% Free</h3>
-                    <p>No hidden charges, no agent fees, completely transparent</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">✅</div>
-                    <h3>Verified Data</h3>
-                    <p>All bank information verified from official sources</p>
+            <div class="banner-carousel">
+                <div class="hero-banner-card">
+                    <div class="banner-content">
+                        <span class="tag-badge">SPECIAL FINTECH OFFER • 2026</span>
+                        <h1 class="banner-title">Guaranteed Lowest Rates from <span class="highlight-yellow">8.15% p.a.</span></h1>
+                        <p class="banner-subtitle">Pre-approved loan sanction letters for USA, UK, Canada & top Indian universities. 100% Tax Deductible under Sec 80E.</p>
+                        <div class="banner-actions">
+                            <a href="#form" class="btn btn-warning btn-lg">Compare Eligible Loans</a>
+                            <a href="#calculator" class="btn btn-outline-white btn-lg">Calculate Monthly EMI</a>
+                        </div>
+                    </div>
+                    <div class="banner-stats-box">
+                        <div class="stat-pill">
+                            <span class="stat-num">₹500+ Cr</span>
+                            <span class="stat-text">Loans Sanctioned</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="stat-num">15+</span>
+                            <span class="stat-text">Partner Banks</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="stat-num">4.9 ★</span>
+                            <span class="stat-text">Student Rating</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Loan Comparison Form -->
-    <section class="form-section" id="form">
-        <div class="container">
-            <h2>Find Your Ideal Education Loan</h2>
-            <p class="subtitle">Fill in your details to compare suitable bank options</p>
+    <!-- Trust Badges Bar (Amazon Style) -->
+    <div class="trust-bar">
+        <div class="container trust-container">
+            <div class="trust-item">
+                <span class="trust-icon">🛡️</span>
+                <div>
+                    <h4>100% Direct Bank Rates</h4>
+                    <p>Zero hidden agent commission</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">⚡</span>
+                <div>
+                    <h4>Fast Track Approval</h4>
+                    <p>In-principle sanction in 48 hours</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🔒</span>
+                <div>
+                    <h4>Bank-Grade Data Privacy</h4>
+                    <p>256-bit SSL encrypted vault</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🇮🇳</span>
+                <div>
+                    <h4>Govt CSIS Subsidy</h4>
+                    <p>Full interest waiver for EWS</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Marketplace Section (Myntra / Amazon Product Listing Page Layout) -->
+    <section class="marketplace-section" id="form">
+        <div class="container marketplace-container">
             
-            <form id="loanForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" required placeholder="Enter your full name">
-                    </div>
+            <!-- Left Filter Sidebar (Myntra Style Filter Facets) -->
+            <aside class="filter-facets-sidebar">
+                <div class="facets-header">
+                    <h3>FILTERS</h3>
+                    <button class="clear-all-btn" id="clearAllFilters">CLEAR ALL</button>
+                </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" required placeholder="your.email@example.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" required placeholder="10-digit mobile number">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="loanAmount">Loan Amount Required (₹) *</label>
-                        <input type="number" id="loanAmount" required placeholder="e.g., 500000" min="50000">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="course">Course/Degree *</label>
-                        <select id="course" required>
-                            <option value="">Select your course</option>
-                            <option value="undergraduate">Undergraduate (UG)</option>
-                            <option value="postgraduate">Postgraduate (PG)</option>
-                            <option value="phd">PhD/Doctorate</option>
-                            <option value="diploma">Diploma/Certificate</option>
-                            <option value="professional">Professional Courses</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="destination">Study Destination *</label>
-                        <select id="destination" required>
-                            <option value="">Select destination</option>
-                            <option value="india">Within India</option>
-                            <option value="abroad">Abroad</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="collateral">Collateral Available? *</label>
-                        <select id="collateral" required>
-                            <option value="">Select option</option>
-                            <option value="yes">Yes (Property/FD/Securities)</option>
-                            <option value="no">No Collateral</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="coapplicant">Co-Applicant Income (₹/year) *</label>
-                        <input type="number" id="coapplicant" required placeholder="Annual income of parent/guardian">
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="academicScore">Academic Score/Percentage *</label>
-                        <input type="number" id="academicScore" required placeholder="e.g., 85" min="0" max="100" step="0.01">
+                <!-- Loan Amount Range Slider -->
+                <div class="facet-box">
+                    <h4 class="facet-title">Required Loan Amount</h4>
+                    <div class="facet-body">
+                        <div class="range-value-display" id="loanAmountDisplay">₹25,00,000</div>
+                        <input type="range" id="loanAmountRange" min="100000" max="20000000" step="100000" value="2500000">
+                        <div class="range-labels">
+                            <span>₹1L</span>
+                            <span>₹2 Cr</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn">Compare Loan Options</button>
-                    <button type="reset" class="reset-btn">Clear Form</button>
+                <!-- Family Income Slider -->
+                <div class="facet-box">
+                    <h4 class="facet-title">Annual Co-Applicant Income</h4>
+                    <div class="facet-body">
+                        <div class="range-value-display" id="familyIncomeDisplay">₹6,00,000</div>
+                        <input type="range" id="familyIncomeRange" min="100000" max="3000000" step="50000" value="600000">
+                        <div class="range-labels">
+                            <span>₹1L</span>
+                            <span>₹30L+</span>
+                        </div>
+                    </div>
                 </div>
-            </form>
+
+                <!-- Bank Category Checkboxes -->
+                <div class="facet-box">
+                    <h4 class="facet-title">Bank Category</h4>
+                    <div class="facet-body">
+                        <label class="facet-checkbox-label">
+                            <input type="checkbox" class="bank-type-filter" value="Government" checked>
+                            <span>Public Sector Banks (SBI, PNB, BOB)</span>
+                        </label>
+                        <label class="facet-checkbox-label">
+                            <input type="checkbox" class="bank-type-filter" value="Private" checked>
+                            <span>Private Banks (HDFC, ICICI, Axis)</span>
+                        </label>
+                        <label class="facet-checkbox-label">
+                            <input type="checkbox" class="bank-type-filter" value="NBFC" checked>
+                            <span>Specialized NBFCs (Credila, Avanse)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Collateral Requirement -->
+                <div class="facet-box">
+                    <h4 class="facet-title">Collateral Security</h4>
+                    <div class="facet-body">
+                        <label class="facet-radio-label">
+                            <input type="radio" name="collateralFacet" value="all" checked> Any Loan Scheme
+                        </label>
+                        <label class="facet-radio-label">
+                            <input type="radio" name="collateralFacet" value="none"> Zero Collateral Only
+                        </label>
+                        <label class="facet-radio-label">
+                            <input type="radio" name="collateralFacet" value="required"> Collateral Property/FD
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Destination -->
+                <div class="facet-box">
+                    <h4 class="facet-title">Study Country</h4>
+                    <div class="facet-body">
+                        <select class="facet-select" id="countryFacet">
+                            <option value="all">All Countries</option>
+                            <option value="abroad">USA / Canada / UK / Europe</option>
+                            <option value="india">India (IITs, IIMs, AIIMS, NITs)</option>
+                        </select>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Product Listing Cards (Amazon / Myntra Product Grid) -->
+            <main class="product-listing-main">
+                
+                <!-- Listing Header Controls -->
+                <div class="listing-header-bar">
+                    <div class="listing-title-group">
+                        <h2 class="listing-heading">Education Loan Products</h2>
+                        <span class="result-count-tag" id="resultsCount">Showing 8 Partner Banks</span>
+                    </div>
+                    
+                    <div class="sort-by-group">
+                        <label for="sortBySelect">Sort By:</label>
+                        <select id="sortBySelect" class="sort-select">
+                            <option value="match">Recommended (Best Match)</option>
+                            <option value="rate">Lowest Interest Rate</option>
+                            <option value="amount">Highest Loan Cap</option>
+                            <option value="rating">Highest Customer Rating</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Product Grid (Amazon Card Cards) -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- Dynamic Amazon/Myntra style bank product cards rendered via JS -->
+                </div>
+            </main>
         </div>
     </section>
 
-    <!-- Results Section -->
-    <section class="results-section" id="results" style="display: none;">
+    <!-- Floating Comparison Bar (Amazon Drawer Style) -->
+    <div class="floating-compare-drawer" id="compareDrawer">
+        <div class="container drawer-container">
+            <div class="drawer-left">
+                <span class="drawer-title">Compare Bank Schemes (<span id="compSelectedCount">0</span>/3)</span>
+                <div class="drawer-selected-thumbs" id="drawerThumbs">
+                    <!-- Selected Bank Thumbs -->
+                </div>
+            </div>
+            <div class="drawer-right">
+                <button class="btn btn-text-white" id="clearDrawerBtn">Clear All</button>
+                <button class="btn btn-warning" id="openDrawerModalBtn">Compare Side-by-Side ➔</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Moratorium EMI Calculator (Clean Widget Style) -->
+    <section class="section-calculator" id="calculator">
         <div class="container">
-            <h2>🎯 Recommended Banks For You</h2>
-            <div id="resultsContainer"></div>
-            <div class="disclaimer">
-                <p><strong>Important:</strong> These are recommendations based on general eligibility criteria. Final loan approval is subject to bank verification and assessment.</p>
+            <div class="section-title-wrapper text-center">
+                <span class="sub-badge">FINANCIAL CALCULATOR</span>
+                <h2>Moratorium EMI & Repayment Calculator</h2>
+                <p>Calculate exact simple interest during study period & post-graduation monthly EMI payments.</p>
+            </div>
+
+            <div class="calc-widget-card">
+                <div class="calc-inputs-col">
+                    <div class="calc-input-group">
+                        <label>Loan Amount: <strong id="calcAmountVal" class="text-primary">₹20,00,000</strong></label>
+                        <input type="range" id="calcAmount" min="100000" max="15000000" step="100000" value="2000000">
+                    </div>
+
+                    <div class="calc-input-group">
+                        <label>Annual Interest Rate: <strong id="calcRateVal" class="text-primary">9.5% p.a.</strong></label>
+                        <input type="range" id="calcRate" min="7.0" max="15.0" step="0.1" value="9.5">
+                    </div>
+
+                    <div class="calc-grid-selectors">
+                        <div>
+                            <label>Study Moratorium</label>
+                            <select id="calcCourseYears">
+                                <option value="1">1 Year (Master / Diploma)</option>
+                                <option value="2" selected>2 Years (MS / MBA)</option>
+                                <option value="3">3 Years (BBA / BSc)</option>
+                                <option value="4">4 Years (B.Tech / MBBS)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Grace Period</label>
+                            <select id="calcGraceYears">
+                                <option value="0.5">6 Months</option>
+                                <option value="1" selected>1 Year (Standard)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Repayment Tenure</label>
+                            <select id="calcTenureYears">
+                                <option value="5">5 Years</option>
+                                <option value="7">7 Years</option>
+                                <option value="10">10 Years</option>
+                                <option value="15" selected>15 Years</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calc-summary-col">
+                    <div class="emi-hero-card">
+                        <span class="emi-title">Monthly EMI (Post-Course)</span>
+                        <span class="emi-value" id="outEMI">₹22,450</span>
+                        <span class="emi-subtext">Per Month for 15 Years</span>
+                    </div>
+
+                    <div class="calc-summary-grid">
+                        <div class="summary-box">
+                            <span class="sum-label">Study Period Interest</span>
+                            <span class="sum-val text-amber" id="outMoratoriumInterest">₹5,70,000</span>
+                        </div>
+                        <div class="summary-box">
+                            <span class="sum-label">Total Principal Post-Study</span>
+                            <span class="sum-val" id="outPostStudyPrincipal">₹25,70,000</span>
+                        </div>
+                        <div class="summary-box">
+                            <span class="sum-label">Total Payable Interest</span>
+                            <span class="sum-val text-cyan" id="outTotalInterest">₹20,41,000</span>
+                        </div>
+                        <div class="summary-box">
+                            <span class="sum-label">Total Repayment Amount</span>
+                            <span class="sum-val text-emerald" id="outTotalRepayment">₹40,41,000</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Section 80E Tax Savings Section -->
+    <section class="section-tax" id="tax-calculator">
+        <div class="container">
+            <div class="tax-banner-card">
+                <div class="tax-content">
+                    <span class="tax-badge">INCOME TAX ACT 1961</span>
+                    <h2>Save Up to <span class="text-emerald">₹4,93,000</span> in Income Tax Under Sec 80E</h2>
+                    <p>100% of interest paid on higher education loans is tax-deductible for up to 8 continuous financial years with no upper cap.</p>
+                </div>
+                <div class="tax-calc-box">
+                    <div class="tax-form-group">
+                        <label>Annual Loan Interest Paid</label>
+                        <input type="number" id="taxInterestInput" value="190000" step="10000">
+                    </div>
+                    <div class="tax-form-group">
+                        <label>Co-Applicant Tax Slab</label>
+                        <select id="taxSlabSelect">
+                            <option value="0.30" selected>30% Slab (Income &gt; ₹15 Lakhs)</option>
+                            <option value="0.20">20% Slab (Income ₹10L - ₹15L)</option>
+                            <option value="0.10">10% Slab (Income ₹7L - ₹10L)</option>
+                        </select>
+                    </div>
+                    <div class="tax-result-pills">
+                        <div class="tax-pill">
+                            <span>Annual Tax Saved</span>
+                            <strong id="taxAnnualVal">₹61,635 / yr</strong>
+                        </div>
+                        <div class="tax-pill highlight-pill">
+                            <span>Total 8-Year Tax Saved</span>
+                            <strong id="tax8YearVal" class="text-emerald">₹4,93,080</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Document Vault Section -->
+    <section class="section-documents" id="documents">
+        <div class="container">
+            <div class="section-title-wrapper text-center">
+                <span class="sub-badge">DOCUMENT PREPARATION</span>
+                <h2>Smart Loan Document Vault Checklist</h2>
+                <p>Organize required documents before submitting loan applications to partner banks.</p>
+            </div>
+
+            <div class="doc-vault-card">
+                <div class="doc-col">
+                    <h3>👨‍🎓 Student Documents</h3>
+                    <ul class="doc-list">
+                        <li><input type="checkbox" checked> 10th & 12th Mark sheets / Passing Certificates</li>
+                        <li><input type="checkbox" checked> Graduation Mark sheets & Degree Certificate</li>
+                        <li><input type="checkbox" checked> University Admission Letter & Fee Breakup Sheet</li>
+                        <li><input type="checkbox" checked> Aadhaar Card & PAN Card</li>
+                        <li><input type="checkbox"> Valid Indian Passport (Mandatory for Abroad Study)</li>
+                        <li><input type="checkbox"> GRE / GMAT / IELTS / TOEFL Scorecard</li>
+                    </ul>
+                </div>
+                <div class="doc-col">
+                    <h3>👨‍👩‍👦 Co-Applicant Documents</h3>
+                    <ul class="doc-list">
+                        <li><input type="checkbox" checked> Co-borrower Aadhaar Card & PAN Card</li>
+                        <li><input type="checkbox" checked> Last 6 Months Bank Account Statement</li>
+                        <li><input type="checkbox" checked> Last 2 Years Income Tax Returns (ITR) with Computation</li>
+                        <li><input type="checkbox"> Last 3 Months Salary Slips (Salaried Employees)</li>
+                        <li><input type="checkbox"> Property Title Deed / FD Receipt (If Collateral Required)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amazon Style Verified Student Reviews Section -->
+    <section class="reviews-section">
+        <div class="container">
+            <div class="section-title-wrapper text-center">
+                <span class="sub-badge">VERIFIED REVIEWS</span>
+                <h2>What Students Say About Edu4Loan</h2>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-avatar">👨‍🎓</span>
+                        <div>
+                            <h4>Rohan Verma</h4>
+                            <span class="verified-badge">✔ Verified Loan Sanction</span>
+                        </div>
+                    </div>
+                    <div class="star-rating">★★★★★</div>
+                    <p class="review-text">"Got my SBI Scholar loan of ₹35 Lakhs approved for MS in US without any hassle. Edu4Loan compared rates and matched me with the lowest moratorium interest!"</p>
+                    <span class="review-univ">Northeastern University, Boston</span>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-avatar">👩‍🎓</span>
+                        <div>
+                            <h4>Priya Sharma</h4>
+                            <span class="verified-badge">✔ Verified Loan Sanction</span>
+                        </div>
+                    </div>
+                    <div class="star-rating">★★★★★</div>
+                    <p class="review-text">"HDFC Credila sanctioned my zero-collateral loan within 48 hours! The moratorium calculator gave me the exact post-graduation EMI breakdown beforehand."</p>
+                    <span class="review-univ">University of Toronto, Canada</span>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-avatar">👨‍🎓</span>
+                        <div>
+                            <h4>Aditya Patel</h4>
+                            <span class="verified-badge">✔ Verified Loan Sanction</span>
+                        </div>
+                    </div>
+                    <div class="star-rating">★★★★★</div>
+                    <p class="review-text">"Saved over ₹4.5 Lakhs in income tax using the Section 80E advice on Edu4Loan. Extremely transparent platform with 0% agent fees."</p>
+                    <span class="review-univ">IIT Bombay (MBA)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Hackathon Info Section -->
     <section class="about-section" id="about">
         <div class="container">
-            <h2>About This Platform</h2>
-            <div class="about-content">
-                <p>This platform was created as part of <strong>INNOVIT 2026</strong> by Team <strong>CodeBunnies</strong> to address a critical problem faced by Indian students: the lack of a centralized, transparent platform to compare education loan options.</p>
-                
-                <div class="problem-solution">
-                    <div class="box">
-                        <h3>The Problem</h3>
-                        <ul>
-                            <li>Students visit multiple banks individually</li>
-                            <li>Loan information is scattered and confusing</li>
-                            <li>Heavy dependency on agents and middlemen</li>
-                            <li>Lack of transparency in eligibility criteria</li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <h3>Our Solution</h3>
-                        <ul>
-                            <li>One form to compare multiple banks</li>
-                            <li>Clear, student-friendly comparison</li>
-                            <li>No agents, completely free service</li>
-                            <li>Transparent eligibility mapping</li>
-                        </ul>
-                    </div>
+            <div class="section-title-wrapper text-center">
+                <span class="sub-badge">INNOVIT 2026</span>
+                <h2>About CodeBunnies & Edu4Loan</h2>
+            </div>
+            <div class="doc-vault-card">
+                <div class="doc-col">
+                    <h3>The Problem</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px; line-height: 1.6;">
+                        Indian students visit multiple bank branches individually with scattered, confusing loan terms, heavy agent dependency, and zero transparency into moratorium interest accrual or Section 80E tax benefits.
+                    </p>
                 </div>
-
-                <div class="atmanirbhar">
-                    <h3>🇮🇳 Contributing to Atmanirbhar Bharat</h3>
-                    <p>By empowering students with financial clarity and reducing dependency on intermediaries, we promote self-reliant decision-making and support India's vision of an educated, self-sufficient workforce.</p>
+                <div class="doc-col">
+                    <h3>Our Solution & Impact</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px; line-height: 1.6;">
+                        A centralized, 100% transparent fintech comparison marketplace offering real-time bank matching, moratorium EMI calculation, and CSIS government subsidy guidance — empowering Atmanirbhar Bharat 🇮🇳.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 CodeBunnies - INNOVIT 2026 | Theme: Open Innovation (TH01)</p>
-            <p class="motto">Ideas Powering Atmanirbhar Bharat 🇮🇳</p>
+    <!-- Side-by-Side Comparison Modal (Amazon Table Style) -->
+    <div class="modal-backdrop" id="compareModal">
+        <div class="modal-box compare-modal-box">
+            <div class="modal-header">
+                <h2>Side-by-Side Bank Comparison Matrix</h2>
+                <button class="close-modal-btn" id="closeCompareModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="compare-table" id="compareTable">
+                        <!-- Dynamic compare matrix -->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Sign In / Register Modal -->
+    <div class="modal-backdrop" id="authModal">
+        <div class="modal-box auth-modal-box">
+            <div class="modal-header">
+                <h2 id="authModalHeading">Student Sign In</h2>
+                <button class="close-modal-btn" id="closeAuthModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="authForm">
+                    <div class="auth-group" id="authNameGroup" style="display: none;">
+                        <label>Full Name</label>
+                        <input type="text" id="authName" placeholder="Rahul Sharma">
+                    </div>
+                    <div class="auth-group">
+                        <label>Email Address</label>
+                        <input type="email" id="authEmail" placeholder="rahul@example.com" required>
+                    </div>
+                    <div class="auth-group" id="authPhoneGroup" style="display: none;">
+                        <label>Mobile Number</label>
+                        <input type="tel" id="authPhone" placeholder="9876543210">
+                    </div>
+                    <div class="auth-group">
+                        <label>Password</label>
+                        <input type="password" id="authPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-full" id="authSubmitBtn">Sign In</button>
+                </form>
+                <div class="auth-toggle-link">
+                    <span id="authToggleText">New to Edu4Loan?</span>
+                    <button class="btn-link" id="authToggleBtn">Create Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Amazon-Style Footer -->
+    <footer class="amazon-footer">
+        <div class="back-to-top" id="backToTop">
+            <span>Back to top ▲</span>
+        </div>
+        
+        <div class="footer-primary">
+            <div class="container footer-grid">
+                <div class="footer-col">
+                    <h4>Get to Know Us</h4>
+                    <a href="#about">About CodeBunnies</a>
+                    <a href="#about">INNOVIT 2026 Project</a>
+                    <a href="#">Atmanirbhar Bharat Vision</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Partner Banks</h4>
+                    <a href="#">State Bank of India (SBI)</a>
+                    <a href="#">HDFC Credila</a>
+                    <a href="#">ICICI Bank</a>
+                    <a href="#">Bank of Baroda</a>
+                    <a href="#">Punjab National Bank</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Calculators & Tools</h4>
+                    <a href="#calculator">Moratorium EMI Calculator</a>
+                    <a href="#tax-calculator">Sec 80E Tax Savings Calc</a>
+                    <a href="#subsidies">CSIS Govt Subsidy Guide</a>
+                    <a href="#documents">Document Vault Checklist</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Let Us Help You</h4>
+                    <a href="#">Your Account</a>
+                    <a href="#">Track Loan Application</a>
+                    <a href="#">Customer Support</a>
+                    <a href="#">Toll-Free: 1800-123-4567</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-secondary text-center">
+            <p>&copy; 2026 CodeBunnies - INNOVIT 2026 | Theme: Open Innovation (TH01) | Ideas Powering Atmanirbhar Bharat 🇮🇳</p>
         </div>
     </footer>
 
